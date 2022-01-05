@@ -1,0 +1,287 @@
+@import "https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css";
+
+body {
+  background-color: gray;
+  font-size: 14px;
+  width: 100%;
+  height: 100vh;
+  margin-left: auto;
+  margin-right: auto;
+  background-image: linear-gradient(120deg, #3498db, #8e44ad);
+  display: flex;
+  flex-direction: column;
+}
+
+.Login_body {
+  width: 92%;
+  height: 100vh;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.Auth_Container {
+  background: white;
+  height: 80%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.Login_Title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 80px;
+}
+
+.Auth {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.AuthForm {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.Input_IdPw {
+  width: 100%;
+  height: 40px;
+  font-size: 15px;
+  border: none;
+  outline: none;
+  border-bottom: 1px black solid;
+  margin-bottom: 30px;
+}
+.height_20px {
+  height: 20px;
+}
+
+.Button_CreateAccount {
+  border: none;
+  background: none;
+  font-size: 14px;
+  color: #3498db;
+  font-weight: 600;
+}
+.Button_CreateAccount:hover {
+  cursor: pointer;
+}
+
+.Button_Login {
+  width: 100%;
+  height: 40px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  background-image: linear-gradient(120deg, #3498db, #8e44ad);
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+.Button_Login:hover {
+  cursor: pointer;
+}
+
+.SocialLogin_Container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.SocialLogin_button {
+  width: 49.5%;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.SocialLogin_button:hover {
+  cursor: pointer;
+  background: black;
+  color: white;
+}
+
+.Nav_Container {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 50px;
+  color: white;
+  background-color: black;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.Nav_Container_Inner {
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  height: 100%;
+  width: 100%;
+  max-width: 500px;
+}
+
+.Nav_Container_Inner_Inner:hover {
+  background-image: linear-gradient(120deg, #3498db, #8e44ad);
+  cursor: pointer;
+}
+
+.Nav_Container_Inner_Inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.Home_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 92%;
+  max-width: 500px;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.Onsubmit_Container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.Input_Tweet {
+  width: 100%;
+  height: 60px;
+  margin-bottom: 3px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.Input_File {
+  width: 100%;
+  height: 30px;
+  border: none;
+}
+.RemoveFile {
+  color: blue;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.Button_UpdateMessage {
+  width: 100%;
+  height: 30px;
+  border: none;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-top: 3px;
+  margin-bottom: 20px;
+}
+
+.Button_UpdateMessage:hover {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+
+.abcde {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.who {
+  width: 100%;
+}
+.Message_Container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  border: 0.5px solid white;
+  padding: 5px;
+}
+
+.Message {
+  flex-wrap: wrap;
+  line-height: 1.2rem;
+  width: 100%;
+}
+
+.Message_Image {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  margin-top: 5px;
+  margin-bottom: 3px;
+}
+
+.Del_Edit_Container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  justify-content: space-between;
+}
+
+.Button_DelOrEdit {
+  width: 49%;
+  height: 20px;
+  background-color: white;
+  border-radius: 5px;
+  font-size: 12px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.Button_DelOrEdit:hover {
+  cursor: pointer;
+  background-color: black;
+  color: white;
+}
+
+.Profile_Container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+}
+
+.Button_Logout {
+  width: 100%;
+  height: 30px;
+  background-image: linear-gradient(120deg, #3498db, #8e44ad);
+  color: white;
+  border: solid 1px white;
+}
+
+.Button_Logout:hover {
+  cursor: pointer;
+  color: white;
+  border: white 1px solid;
+  background-image: none;
+  background-color: black;
+}
