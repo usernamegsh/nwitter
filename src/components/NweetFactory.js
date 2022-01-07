@@ -20,30 +20,42 @@ import {
 const NweetFactory = ({ userObj }) => {
   const [nweet, setNweet] = useState("");
   const [attachment, setAttachment] = useState("");
+  const [isLoadding, setIsLoadding] = useState(false); // 작성하기 예외처리
+
   const onSubmit = async (e) => {
-    e.preventDefault();
-    let attachmentUrl = "";
-    if (attachment !== "") {
-      //파일 경로 참조 만들기
-      const storage = getStorage();
-      const fileRef = ref(storage, `${userObj.uid}/${uuidv4()}`);
+    try{
+      e.preventDefault();
+      if (isLoadding) {return}
+      setIsLoadding(true);
+      let attachmentUrl = "";
+      if (attachment !== "") {
+        //파일 경로 참조 만들기
+        const storage = getStorage();
+        const fileRef = ref(storage, `${userObj.uid}/${uuidv4()}`);
 
-      //storage 참조 경로로 파일 업로드 하기
-      const uploadFile = await uploadString(fileRef, attachment, "data_url");
+        //storage 참조 경로로 파일 업로드 하기
+        const uploadFile = await uploadString(fileRef, attachment, "data_url");
 
-      console.log(uploadFile);
-      //storage에 있는 파일 URL로 다운로드 받기
-      attachmentUrl = await getDownloadURL(uploadFile.ref);
+        console.log(uploadFile);
+        //storage에 있는 파일 URL로 다운로드 받기
+        attachmentUrl = await getDownloadURL(uploadFile.ref);
+      }
+      const nweetObj = {
+        text: nweet,
+        createdAt: Date.now(),
+        creatorID: userObj.uid,
+        attachmentUrl,
+      };
+      const docRef = await addDoc(collection(dbService, "nweets"), nweetObj);
+      setNweet("");
+      setAttachment(""); 
     }
-    const nweetObj = {
-      text: nweet,
-      createdAt: Date.now(),
-      creatorID: userObj.uid,
-      attachmentUrl,
-    };
-    const docRef = await addDoc(collection(dbService, "nweets"), nweetObj);
-    setNweet("");
-    setAttachment("");
+    catch (error) {
+      console.log(error);
+    }
+    finally{
+      setIsLoadding(false);
+    }
   };
 
   const onChange = (event) => {
@@ -73,6 +85,7 @@ const NweetFactory = ({ userObj }) => {
 
   return (
     <form onSubmit={onSubmit} className="Onsubmit_Container">
+      <div>      {isLoadding ? "로딩중" : "완료"} </div>
       <div>
         <textarea
           type="text"
