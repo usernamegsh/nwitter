@@ -36,7 +36,6 @@ const NweetFactory = ({ userObj }) => {
         //storage 참조 경로로 파일 업로드 하기
         const uploadFile = await uploadString(fileRef, attachment, "data_url");
 
-        console.log(uploadFile);
         //storage에 있는 파일 URL로 다운로드 받기
         attachmentUrl = await getDownloadURL(uploadFile.ref);
       }
@@ -51,7 +50,7 @@ const NweetFactory = ({ userObj }) => {
       setAttachment(""); 
     }
     catch (error) {
-      console.log(error);
+      alert(error)
     }
     finally{
       setIsLoadding(false);
@@ -65,11 +64,14 @@ const NweetFactory = ({ userObj }) => {
     } = event;
     setNweet(value);
   };
+
   const onFileChange = (event) => {
+    try{
     const {
       target: { files },
     } = event;
     const theFile = files[0];
+    console.log(theFile);
     const reader = new FileReader();
     reader.onloadend = (finishedEvent) => {
       const {
@@ -78,7 +80,11 @@ const NweetFactory = ({ userObj }) => {
       setAttachment(result);
     };
     reader.readAsDataURL(theFile);
+    } catch (error) {
+      console.error(error)
+    } 
   };
+
   const onClearAttachment = () => {
     setAttachment(null);
   };
@@ -96,18 +102,20 @@ const NweetFactory = ({ userObj }) => {
         />
         <input
           type="file"
-          accept="image/*"
           onChange={onFileChange}
-          className="Input_File"
+          accept="image/*"
+          id="inputFile"
+          style={{display:"none"}}
         />
+        <label for="inputFile" className="Input_File">파일선택 </label>
         {attachment && (
           <div>
             <img
               src={attachment}
               style={{
                 backgroundImage: attachment,
-                width: "100px",
-                height: "100px",
+                width: "50px",
+                height: "50px"
               }}
             />
             <div onClick={onClearAttachment} className="RemoveFile">
