@@ -24,7 +24,6 @@ const Nweet1 = ({ nweetObj, isOwner }) => {
   };
   const onSubmit = async (event) => {
     event.preventDefault();
-    console.log(nweetObj, newNweet);
     const NweetTextRef = doc(dbService, "nweets", `${nweetObj.id}`);
     await updateDoc(NweetTextRef, {
       text: newNweet,
@@ -53,13 +52,15 @@ const Nweet1 = ({ nweetObj, isOwner }) => {
             />
             <input type="submit" value="작성하기"></input>
           </form>
-          <button onClick={toggleEditting}> 삭제하기 </button>
+          <button onClick={toggleEditting}> 취소 </button>
         </>
       ) : (
         <div className="Message_Container">
           <div className="Message">{nweetObj.text}</div>
           {nweetObj.attachmentUrl && (
-            <img src={nweetObj.attachmentUrl} className="Message_Image" />
+            <div className="Message_Image_Container">
+              <img src={nweetObj.attachmentUrl} className="Message_Image" />
+            </div>
           )}
           {isOwner && (
             <div className="Del_Edit_Container">

@@ -6,6 +6,11 @@ import NweetFactory from "../components/NweetFactory";
 
 const Home = ({ userObj }) => {
   const [nweets, setNweets] = useState([]);
+  const [toggleposting, setTogglePosting] = useState(false);
+  const OnPostClick = () => {
+    setTogglePosting(true) 
+    console.log('바뀜')
+  }
   useEffect(() => {
     const q = query(
       collection(dbService, "nweets"),
@@ -18,12 +23,14 @@ const Home = ({ userObj }) => {
       }));
       setNweets(nweetArr);
     });
-  }, []);
+  }, [])
+  ;
 
   return (
     <div className="Home_container">
+      <div className="Posting_test">작성하기</div>
       <NweetFactory userObj={userObj} />
-      <div className="abcde">
+      <div className="abcde" onClick={OnPostClick}>  
         {nweets.map((nweet) => (
           <Nweet1
             key={nweet.id}
