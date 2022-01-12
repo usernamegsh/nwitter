@@ -5,6 +5,7 @@ import react from "react";
 import { useState } from "react/cjs/react.development";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
+import userEvent from "@testing-library/user-event";
 
 const Nweet1 = ({ nweetObj, isOwner }) => {
   const [editng, setEditing] = useState(false);
@@ -40,6 +41,7 @@ const Nweet1 = ({ nweetObj, isOwner }) => {
   };
   return (
     <div className="who">
+      <div> {nweetObj.creatorEmail} </div>
       {editng ? (
         <>
           <form onSubmit={onSubmit}>

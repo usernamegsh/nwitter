@@ -17,15 +17,18 @@ import {
   getStorage,
 } from "@firebase/storage";
 
-const NweetFactory = ({ userObj }) => {
+const NweetFactory = ({ userObj, onSubmitComplete }) => {
   const [nweet, setNweet] = useState("");
   const [attachment, setAttachment] = useState("");
   const [isLoadding, setIsLoadding] = useState(false); // 작성하기 예외처리
+  console.log(userObj)
+  console.log(JSON.stringify(userObj))
 
   const onSubmit = async (e) => {
     try{
       e.preventDefault();
       if (isLoadding) {return}
+      if (!userObj?.uid) {return} // early return
       setIsLoadding(true);
       let attachmentUrl = "";
       if (attachment !== "") {
@@ -44,6 +47,7 @@ const NweetFactory = ({ userObj }) => {
         createdAt: Date.now(),
         creatorID: userObj.uid,
         attachmentUrl,
+        creatorEmail : userObj.email
       };
       const docRef = await addDoc(collection(dbService, "nweets"), nweetObj);
       setNweet("");
@@ -54,6 +58,9 @@ const NweetFactory = ({ userObj }) => {
     }
     finally{
       setIsLoadding(false);
+      if(typeof(onSubmitComplete) === "function") {
+        onSubmitComplete()
+      }
     }
   };
 
@@ -127,6 +134,11 @@ const NweetFactory = ({ userObj }) => {
           type="submit"
           value="작성하기"
           className="Button_UpdateMessage"
+        />
+        <input
+          type="button"
+          value="취소하기"
+          onClick={onSubmitComplete}
         />
       </div>
     </form>

@@ -9,8 +9,11 @@ const Home = ({ userObj }) => {
   const [toggleposting, setTogglePosting] = useState(false);
   const OnPostClick = () => {
     setTogglePosting(true) 
-    console.log('바뀜')
   }
+  const onSubmitComplete = () => {
+    setTogglePosting(false)
+  }
+
   useEffect(() => {
     const q = query(
       collection(dbService, "nweets"),
@@ -28,9 +31,10 @@ const Home = ({ userObj }) => {
 
   return (
     <div className="Home_container">
-      <div className="Posting_test">작성하기</div>
-      <NweetFactory userObj={userObj} />
-      <div className="abcde" onClick={OnPostClick}>  
+      {toggleposting ? 
+      <div> <NweetFactory userObj={userObj}  onSubmitComplete={onSubmitComplete}  />  </div> :  null } ;
+      <div className="Posting_test" onClick={OnPostClick}>작성하기</div> 
+      <div className="abcde">  
         {nweets.map((nweet) => (
           <Nweet1
             key={nweet.id}
@@ -41,6 +45,7 @@ const Home = ({ userObj }) => {
       </div>
     </div>
   );
-};
+}; 
+
 
 export default Home;
