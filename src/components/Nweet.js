@@ -1,22 +1,22 @@
-import { dbService, storageService } from "fbase";
-import { doc, deleteDoc, updateDoc } from "firebase/firestore";
-import { deleteObject, ref } from "@firebase/storage";
-import react from "react";
-import { useState } from "react/cjs/react.development";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
-import userEvent from "@testing-library/user-event";
+import { dbService, storageService } from 'fbase';
+import { doc, deleteDoc, updateDoc } from 'firebase/firestore';
+import { deleteObject, ref } from '@firebase/storage';
+import react from 'react';
+import { useState } from 'react/cjs/react.development';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import userEvent from '@testing-library/user-event';
 
 const Nweet1 = ({ nweetObj, isOwner }) => {
   const [editng, setEditing] = useState(false);
   const [newNweet, setNewNweet] = useState(nweetObj.text);
   const onDeleteClick = async () => {
-    const ok = window.confirm("삭제하시겠습니까?");
-    const NweetTextRef = doc(dbService, "nweets", `${nweetObj.id}`);
+    const ok = window.confirm('삭제하시겠습니까?');
+    const NweetTextRef = doc(dbService, 'nweets', `${nweetObj.id}`);
     if (ok) {
-      await deleteDoc(doc(dbService, "nweets", `${nweetObj.id}`));
+      await deleteDoc(doc(dbService, 'nweets', `${nweetObj.id}`));
       await deleteObject(ref(storageService, nweetObj.attachmentUrl));
-      console.log("삭제");
+      console.log('삭제');
     }
   };
 
@@ -25,7 +25,7 @@ const Nweet1 = ({ nweetObj, isOwner }) => {
   };
   const onSubmit = async (event) => {
     event.preventDefault();
-    const NweetTextRef = doc(dbService, "nweets", `${nweetObj.id}`);
+    const NweetTextRef = doc(dbService, 'nweets', `${nweetObj.id}`);
     await updateDoc(NweetTextRef, {
       text: newNweet,
     });
@@ -41,7 +41,6 @@ const Nweet1 = ({ nweetObj, isOwner }) => {
   };
   return (
     <div className="who">
-      <div> {nweetObj.creatorEmail} </div>
       {editng ? (
         <>
           <form onSubmit={onSubmit}>
@@ -58,6 +57,10 @@ const Nweet1 = ({ nweetObj, isOwner }) => {
         </>
       ) : (
         <div className="Message_Container">
+          <div className="CreatorID_Container">
+            <div>{nweetObj.creatorEmail}</div>
+            <div>{nweetObj.createdAt}</div>
+          </div>
           <div className="Message">{nweetObj.text}</div>
           {nweetObj.attachmentUrl && (
             <div className="Message_Image_Container">
@@ -67,13 +70,13 @@ const Nweet1 = ({ nweetObj, isOwner }) => {
           {isOwner && (
             <div className="Del_Edit_Container">
               <span onClick={onDeleteClick} className="Button_DelOrEdit">
-                {" "}
+                {' '}
                 삭제하기
-                <FontAwesomeIcon icon={faTrash} />{" "}
+                <FontAwesomeIcon icon={faTrash} />{' '}
               </span>
               <span onClick={toggleEditting} className="Button_DelOrEdit">
                 수정하기
-                <FontAwesomeIcon icon={faPencilAlt} />{" "}
+                <FontAwesomeIcon icon={faPencilAlt} />{' '}
               </span>
             </div>
           )}
