@@ -1,10 +1,10 @@
-import { react, useState } from 'react';
-import {
-  getAuth,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-} from 'firebase/auth';
-import 'styles.css';
+// import { react, useState } from 'react';
+// import {
+//   getAuth,
+//   signInWithEmailAndPassword,
+//   createUserWithEmailAndPassword,
+// } from 'firebase/auth';
+// import 'styles.css';
 
 // const AuthForm = () => {
 //   const [email, setEmail] = useState("");

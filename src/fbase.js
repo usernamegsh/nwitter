@@ -12,7 +12,7 @@ const firebaseConfig = {
   appId: process.env.REACT_APP_APP_ID,
 };
 
-console.log("aaaa" , firebaseConfig.apiKey)
+// console.log("aaaa" , firebaseConfig.apiKey)
 
 const app = initializeApp(firebaseConfig);
 const authService = getAuth();

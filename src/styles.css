@@ -233,10 +233,14 @@ body {
   padding: 5px;
 }
 
-.CreatorID_Container {
-  width: 100%;
-  height: 20px;
+.Message_header{
+  display: flex;
+  justify-content: space-between;
   border-bottom: 1px solid white;
+}
+
+.CreatorID_Container {
+  /* width: 100%; */
   display: flex;
   flex-direction: column;
   justify-content: center;

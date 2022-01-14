@@ -1,22 +1,28 @@
 import { dbService, storageService } from 'fbase';
 import { doc, deleteDoc, updateDoc } from 'firebase/firestore';
 import { deleteObject, ref } from '@firebase/storage';
-import react from 'react';
 import { useState } from 'react/cjs/react.development';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import userEvent from '@testing-library/user-event';
 
 const Nweet1 = ({ nweetObj, isOwner }) => {
-  const [editng, setEditing] = useState(false);
+  // console.log(nweetObj)
+  // console.log(`${nweetObj.createdAt}`)
+  
+  const createdAt = typeof nweetObj.createdAt ==='number' ? 
+  (new Date(nweetObj.createdAt)).toLocaleString()
+  : '작성일이 파악되지 않았습니다.' // fallback 메세지
+    const [editng, setEditing] = useState(false);
   const [newNweet, setNewNweet] = useState(nweetObj.text);
+  const [openContextMenu, setOpenContextMenu] = useState(false);
+
   const onDeleteClick = async () => {
     const ok = window.confirm('삭제하시겠습니까?');
     const NweetTextRef = doc(dbService, 'nweets', `${nweetObj.id}`);
     if (ok) {
       await deleteDoc(doc(dbService, 'nweets', `${nweetObj.id}`));
       await deleteObject(ref(storageService, nweetObj.attachmentUrl));
-      console.log('삭제');
     }
   };
 
@@ -57,10 +63,16 @@ const Nweet1 = ({ nweetObj, isOwner }) => {
         </>
       ) : (
         <div className="Message_Container">
-          <div className="CreatorID_Container">
-            <div>{nweetObj.creatorEmail}</div>
-            <div>{nweetObj.createdAt}</div>
+          <div className='Message_header'>
+            <div className="CreatorID_Container"> 
+              <div>{nweetObj.creatorEmail}</div>
+              <div>{createdAt}</div>
+            </div>
+            <div>
+            <button onClick={() => {setOpenContextMenu( (prev)=>!prev )}}> 햄버거 {`${openContextMenu}`} </button>
+            </div>     
           </div>
+
           <div className="Message">{nweetObj.text}</div>
           {nweetObj.attachmentUrl && (
             <div className="Message_Image_Container">
