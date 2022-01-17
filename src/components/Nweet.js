@@ -9,11 +9,12 @@ import userEvent from '@testing-library/user-event';
 const Nweet1 = ({ nweetObj, isOwner }) => {
   // console.log(nweetObj)
   // console.log(`${nweetObj.createdAt}`)
-  
-  const createdAt = typeof nweetObj.createdAt ==='number' ? 
-  (new Date(nweetObj.createdAt)).toLocaleString()
-  : '작성일이 파악되지 않았습니다.' // fallback 메세지
-    const [editng, setEditing] = useState(false);
+
+  const createdAt =
+    typeof nweetObj.createdAt === 'number'
+      ? new Date(nweetObj.createdAt).toLocaleString()
+      : '작성일이 파악되지 않았습니다.'; // fallback 메세지
+  const [editng, setEditing] = useState(false);
   const [newNweet, setNewNweet] = useState(nweetObj.text);
   const [openContextMenu, setOpenContextMenu] = useState(false);
 
@@ -63,33 +64,42 @@ const Nweet1 = ({ nweetObj, isOwner }) => {
         </>
       ) : (
         <div className="Message_Container">
-          <div className='Message_header'>
-            <div className="CreatorID_Container"> 
+          <div className="Message_header">
+            <div className="CreatorID_Container">
               <div>{nweetObj.creatorEmail}</div>
               <div>{createdAt}</div>
             </div>
             <div>
-            <button onClick={() => {setOpenContextMenu( (prev)=>!prev )}}> 햄버거 {`${openContextMenu}`} </button>
-            </div>     
+              {/* <button
+                onClick={() => {
+                  setOpenContextMenu((prev) => !prev);
+                }}
+              >
+                {' '}
+                햄버거 {`${openContextMenu}`}{' '}
+              </button> */}
+            </div>
+            <div>
+              {isOwner && (
+                <div className="Del_Edit_Container">
+                  <span onClick={onDeleteClick} className="Button_DelOrEdit">
+                    {' '}
+                    삭제
+                    <FontAwesomeIcon icon={faTrash} />{' '}
+                  </span>
+                  <span onClick={toggleEditting} className="Button_DelOrEdit">
+                    수정
+                    <FontAwesomeIcon icon={faPencilAlt} />{' '}
+                  </span>
+                </div>
+              )}
+            </div>
           </div>
 
           <div className="Message">{nweetObj.text}</div>
           {nweetObj.attachmentUrl && (
             <div className="Message_Image_Container">
               <img src={nweetObj.attachmentUrl} className="Message_Image" />
-            </div>
-          )}
-          {isOwner && (
-            <div className="Del_Edit_Container">
-              <span onClick={onDeleteClick} className="Button_DelOrEdit">
-                {' '}
-                삭제하기
-                <FontAwesomeIcon icon={faTrash} />{' '}
-              </span>
-              <span onClick={toggleEditting} className="Button_DelOrEdit">
-                수정하기
-                <FontAwesomeIcon icon={faPencilAlt} />{' '}
-              </span>
             </div>
           )}
         </div>

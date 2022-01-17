@@ -1,6 +1,6 @@
-import { React, useState, useEffect } from "react";
-import AppRouter from "components/Routers";
-import authService from "fbase";
+import { React, useState, useEffect } from 'react';
+import AppRouter from 'components/Routers';
+import authService from 'fbase';
 
 function App() {
   const auth = authService;
@@ -16,7 +16,7 @@ function App() {
         SetisLoggedIn(false);
       }
       setInit(true);
-      console.log("진행 중");
+      console.log('진행 중');
     });
   }, []);
 
@@ -25,7 +25,7 @@ function App() {
       {init ? (
         <AppRouter isLoggedIn={isLoggedIn} userObj={userObj} />
       ) : (
-        "Initializing"
+        'Initializing'
       )}
     </>
   );
