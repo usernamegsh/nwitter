@@ -102,11 +102,11 @@ const NweetFactory = ({ userObj, onSubmitComplete }) => {
   };
 
   return (
-    <div>
+    <div className="Modal_Inner">
       <form onSubmit={onSubmit} className="Onsubmit_Container">
-        <div> {isLoadding ? '로딩중' : '완료'} </div>
-        <div>
-          <textarea
+        <div className="Onsubmit_Container_Inner">
+          {/* <div> {isLoadding ? '로딩중' : '완료'} </div> 로딩 진행 상황에 대한 */}
+          <input
             type="text"
             onChange={onChange}
             placeholder={'내용 입력 후, 작성 버튼을 클릭해주세요.'}
@@ -138,12 +138,19 @@ const NweetFactory = ({ userObj, onSubmitComplete }) => {
               </div>
             </div>
           )}
-          <input
-            type="submit"
-            value="작성하기"
-            className="Button_UpdateMessage"
-          />
-          <input type="button" value="취소하기" onClick={onSubmitComplete} />
+          <div className="UpdateCancel_Container">
+            <input
+              type="button"
+              value="취소하기"
+              onClick={onSubmitComplete}
+              className="Button_Cancel"
+            />
+            <input
+              type="submit"
+              value="작성하기"
+              className="Button_UpdateMessage"
+            />
+          </div>
         </div>
       </form>
     </div>

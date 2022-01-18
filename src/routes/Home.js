@@ -9,10 +9,9 @@ const Home = ({ userObj }) => {
   const [nweets, setNweets] = useState([]);
   const [toggleposting, setTogglePosting] = useState(false); // 메세지 작성 폼
   const [onPosting, setOnPosting] = useState(true); // 작성 버튼 표시여부에 대한
-  const onScroll = (event) => {
-    console.log('온스크롤 확인');
-    event.preventDefault();
-  }; // 모달 스크롤에 대한
+  // const onScroll = (event) => {
+  //   event.preventDefault();
+  // }; // 모달 스크롤에 대한
   const togglePosting = () => {
     setOnPosting(false);
   };

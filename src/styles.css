@@ -145,6 +145,10 @@ body {
 
 /* 모달 CSS  */
 .Modal {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   left: 0;
@@ -153,7 +157,12 @@ body {
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */
+}
+.Modal_Inner {
+  width: 550px;
+  height: 350px;
+  background-color: white;
 }
 
 .Home_container {
@@ -193,12 +202,23 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   width: 100%;
+  height: 100%;
+}
+
+.Onsubmit_Container_Inner {
+  width: 95%;
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .Input_Tweet {
   width: 100%;
-  height: 60px;
+  height: 50%;
   margin-bottom: 3px;
   font-size: 16px;
   line-height: 1.5;
@@ -207,9 +227,18 @@ body {
 .Input_File {
   border-radius: 5px;
   cursor: pointer;
-  width: 50px;
-  height: 50px;
-  display: block;
+  width: 100%;
+  height: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-image: linear-gradient(120deg, #3498db, #8e44ad);
+}
+.Input_File:hover {
+  background-image: none;
+  background-color: black;
 }
 
 .RemoveFile {
@@ -217,18 +246,35 @@ body {
   cursor: pointer;
   margin-top: 5px;
 }
+.UpdateCancel_Container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
 
 .Button_UpdateMessage {
-  width: 100%;
+  width: 49.5%;
   height: 30px;
   border: none;
   font-weight: bold;
   border-radius: 5px;
-  margin-top: 3px;
-  margin-bottom: 20px;
 }
 
 .Button_UpdateMessage:hover {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+.Button_Cancel {
+  width: 49.5%;
+  height: 30px;
+  border: none;
+  font-weight: bold;
+  border-radius: 5px;
+}
+.Button_Cancel:hover {
   background-color: black;
   color: white;
   cursor: pointer;
