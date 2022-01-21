@@ -1,7 +1,7 @@
 import { dbService, storageService } from 'fbase';
 import { doc, deleteDoc, updateDoc } from 'firebase/firestore';
 import { deleteObject, ref } from '@firebase/storage';
-import { useState } from 'react/cjs/react.development';
+import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import userEvent from '@testing-library/user-event';
@@ -84,11 +84,9 @@ const Nweet1 = ({ nweetObj, isOwner }) => {
                 <div className="Del_Edit_Container">
                   <span onClick={onDeleteClick} className="Button_DelOrEdit">
                     {' '}
-                    삭제
                     <FontAwesomeIcon icon={faTrash} />{' '}
                   </span>
                   <span onClick={toggleEditting} className="Button_DelOrEdit">
-                    수정
                     <FontAwesomeIcon icon={faPencilAlt} />{' '}
                   </span>
                 </div>
